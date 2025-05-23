@@ -25,8 +25,9 @@
 
   header h1 {
     margin-left: 20px;
-    font-size: 20px; /* Küçük başlık */
+    font-size: 20px;
     font-weight: 600;
+    transition: font-size 0.3s;
   }
 
   /* Menü butonu (3 nokta) */
@@ -34,6 +35,7 @@
     font-size: 30px;
     cursor: pointer;
     user-select: none;
+    transition: font-size 0.3s;
   }
 
   /* Yan menü (sidebar) */
@@ -58,6 +60,7 @@
     color: white;
     display: block;
     transition: 0.3s;
+    border-bottom: 2px solid red; /* Kırmızı alt çizgi */
   }
 
   .sidebar a:hover {
@@ -85,6 +88,52 @@
   body.menu-open main {
     margin-left: 250px;
   }
+
+  /* Menü açıldığında başlık ve menü butonunu küçült */
+  body.menu-open header h1 {
+    font-size: 16px;
+  }
+  body.menu-open .menu-btn {
+    font-size: 24px;
+  }
+
+  /* Kayan yazı bölümü */
+  .kayan-yazi-container {
+    width: 100%;
+    background: #222;
+    color: white;
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+    padding: 6px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    font-weight: bold;
+    font-size: 12px; /* Biraz daha küçük yazı */
+    z-index: 1100;
+    border-top: 2px solid #2980b9;
+  }
+
+  .kayan-yazi {
+    display: inline-block;
+    padding-left: 100%;
+    animation: kaydir 15s linear infinite;
+    /* Renkli yazı efekti için gradient kullanalım */
+    background: linear-gradient(90deg, 
+      red, orange, yellow, green, cyan, blue, violet);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  @keyframes kaydir {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
 </style>
 </head>
 <body>
@@ -105,6 +154,13 @@
   <p>Buraya istediğin içerikleri koyabilirsin.</p>
 </main>
 
+<!-- Kayan yazı -->
+<div class="kayan-yazi-container">
+  <div class="kayan-yazi">
+    Son dakika: Adana'da yağmur bekleniyor... &nbsp;&nbsp;&nbsp; Yeni kod projeleri yolda! &nbsp;&nbsp;&nbsp; Adanalı ChatGPT hep yanınızda!
+  </div>
+</div>
+
 <script>
   function toggleMenu() {
     const sidebar = document.getElementById('sidebar');
@@ -114,4 +170,5 @@
 </script>
 
 </body>
+</html></body>
 </html>
