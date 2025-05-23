@@ -9,6 +9,13 @@
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
     transition: background 0.4s, color 0.4s;
+    background-color: #fff;
+    color: #000;
+  }
+
+  body.dark-mode {
+    background-color: #121212;
+    color: #eee;
   }
 
   header {
@@ -17,6 +24,7 @@
     padding: 10px 20px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     border-bottom: 3px solid black; /* Siyah alt çizgi */
     border-left: 5px solid #2980b9; /* Sol mavi kenar */
     border-right: 5px solid #2980b9; /* Sağ mavi kenar */
@@ -28,6 +36,19 @@
     font-size: 20px;
     font-weight: 600;
     transition: font-size 0.3s;
+  }
+
+  /* Mod değiştirme butonu */
+  #modToggle {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    filter: invert(1); /* Güneş ikonu beyaz olsun */
+    transition: filter 0.3s;
+  }
+
+  body.dark-mode #modToggle {
+    filter: invert(0); /* Ay ikonu siyah olsun */
   }
 
   /* Menü butonu (3 nokta) */
@@ -140,6 +161,7 @@
 <header>
   <span class="menu-btn" onclick="toggleMenu()">⋮</span>
   <h1>Panel Başlık</h1>
+  <img id="modToggle" src="https://cdn-icons-png.flaticon.com/512/1164/1164954.png" alt="Mod Değiştir" title="Karanlık/Aydınlık Mod" />
 </header>
 
 <nav class="sidebar" id="sidebar">
@@ -166,6 +188,12 @@
     sidebar.classList.toggle('open');
     document.body.classList.toggle('menu-open');
   }
+
+  // Karanlık/Aydınlık mod toggle
+  const modToggle = document.getElementById('modToggle');
+  modToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+  });
 </script>
 
 </body>
