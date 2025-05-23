@@ -14,9 +14,19 @@
   header {
     background-color: #2c3e50;
     color: white;
-    padding: 15px 20px;
+    padding: 10px 20px;
     display: flex;
     align-items: center;
+    border-bottom: 3px solid black; /* Siyah alt çizgi */
+    border-left: 5px solid #2980b9; /* Sol mavi kenar */
+    border-right: 5px solid #2980b9; /* Sağ mavi kenar */
+    border-top: none;
+  }
+
+  header h1 {
+    margin-left: 20px;
+    font-size: 20px; /* Küçük başlık */
+    font-weight: 600;
   }
 
   /* Menü butonu (3 nokta) */
@@ -54,7 +64,7 @@
     background-color: #2980b9;
   }
 
-  /* Menü açıkken body içeriğini biraz sağa kaydır */
+  /* Menü açıkken body içeriğini sağa kaydır */
   body.menu-open {
     margin-left: 250px;
     transition: margin-left 0.3s;
@@ -81,7 +91,7 @@
 
 <header>
   <span class="menu-btn" onclick="toggleMenu()">⋮</span>
-  <h1 style="margin-left: 20px;">Panel Başlık</h1>
+  <h1>Panel Başlık</h1>
 </header>
 
 <nav class="sidebar" id="sidebar">
@@ -101,8 +111,6 @@
     sidebar.classList.toggle('open');
     document.body.classList.toggle('menu-open');
   }
-
-  // İstersen menü dışına tıklayınca kapanma özelliği de ekleyebilirim
 </script>
 
 </body>
