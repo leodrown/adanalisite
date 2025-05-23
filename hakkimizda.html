@@ -6,18 +6,143 @@
 <title>Hakkımızda</title>
 <style>
   body {
+    margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    padding: 20px;
+    transition: background 0.4s, color 0.4s;
+    background-color: #fff;
+    color: #000;
   }
-  a {
-    color: #2980b9;
+
+  body.dark-mode {
+    background-color: #121212;
+    color: #eee;
+  }
+
+  header {
+    background-color: #000000;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 3px solid black;
+    border-left: 5px solid #2980b9;
+    border-right: 5px solid #2980b9;
+    border-top: none;
+  }
+
+  header h1 {
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    transition: font-size 0.3s;
+  }
+
+  #modToggle {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    filter: invert(1);
+    transition: filter 0.3s;
+  }
+
+  body.dark-mode #modToggle {
+    filter: invert(0);
+  }
+
+  .menu-btn {
+    font-size: 20px;
+    cursor: pointer;
+    user-select: none;
+    transition: font-size 0.3s;
+  }
+
+  .sidebar {
+    height: 100vh;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #34495e;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+    box-sizing: border-box;
+    z-index: 1000;
+  }
+
+  .sidebar a {
+    padding: 15px 30px;
     text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+    border-bottom: 2px solid red;
+  }
+
+  .sidebar a:hover {
+    background-color: #2980b9;
+  }
+
+  body.menu-open {
+    margin-left: 250px;
+    transition: margin-left 0.3s;
+  }
+
+  .sidebar.open {
+    width: 225px;
+  }
+
+  main {
+    padding: 20px;
+    margin-left: 0;
+    transition: margin-left 0.3s;
+  }
+
+  body.menu-open main {
+    margin-left: 250px;
+  }
+
+  body.menu-open header h1 {
+    font-size: 16px;
+  }
+  body.menu-open .menu-btn {
+    font-size: 24px;
   }
 </style>
 </head>
 <body>
+
+<header>
+  <span class="menu-btn" onclick="toggleMenu()">⋮</span>
   <h1>Hakkımızda</h1>
-  <p>Adanalı babos ekibi olarak web projelerde şahlanıyoruz! Burada takımımızın hikayesini anlatabilirsin.</p>
-  <a href="panel.html">← Panele Dön</a>
+  <img id="modToggle" src="https://cdn-icons-png.flaticon.com/512/1164/1164954.png" alt="Mod Değiştir" title="Karanlık/Aydınlık Mod" />
+</header>
+
+<nav class="sidebar" id="sidebar">
+  <a href="panel.html">Panel</a>
+  <a href="ayarlar.html">Ayarlar</a>
+  <a href="mesaj.html">Mesaj Gönder</a>
+</nav>
+
+<main>
+  <h2>Hakkımızda Sayfası</h2>
+  <p>Burada şirket veya uygulama hakkında bilgiler yer alır.</p>
+</main>
+
+<script>
+  function toggleMenu() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('open');
+    document.body.classList.toggle('menu-open');
+  }
+
+  const modToggle = document.getElementById('modToggle');
+  modToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+  });
+</script>
+
 </body>
 </html>
