@@ -7,7 +7,7 @@
 <style>
   body {
     margin: 0; font-family: 'Segoe UI', sans-serif; background: #f0f0f0; color: #222;
-    transition: background 0.4s, color 0.4s;
+    transition: background 0.4s, color 0.4s, margin-left 0.3s;
   }
   header {
     background-color: #000;
@@ -25,13 +25,14 @@
     font-weight: 600;
   }
   .menu-btn {
-    font-size: 20px;
+    font-size: 24px;
     cursor: pointer;
     user-select: none;
+    transition: font-size 0.3s;
   }
   nav.sidebar {
     height: 100vh;
-    width: 225px;
+    width: 0;
     position: fixed;
     top: 0;
     left: 0;
@@ -39,6 +40,11 @@
     padding-top: 60px;
     box-sizing: border-box;
     z-index: 1000;
+    overflow-x: hidden;
+    transition: width 0.3s;
+  }
+  nav.sidebar.open {
+    width: 225px;
   }
   nav.sidebar a {
     padding: 15px 30px;
@@ -52,8 +58,12 @@
     background-color: #2980b9;
   }
   main {
-    margin-left: 250px;
+    margin-left: 0;
     padding: 20px;
+    transition: margin-left 0.3s;
+  }
+  body.menu-open main {
+    margin-left: 225px;
   }
   form {
     max-width: 400px;
@@ -84,11 +94,11 @@
 <body>
 
 <header>
-  <span class="menu-btn" onclick="location.href='panel.html'">⋮</span>
+  <span class="menu-btn" onclick="toggleMenu()">⋮</span>
   <h1>Mesaj Gönder</h1>
 </header>
 
-<nav class="sidebar">
+<nav class="sidebar" id="sidebar">
   <a href="hakkimizda.html">Hakkımızda</a>
   <a href="ayarlar.html">Ayarlar</a>
   <a href="mesaj.html">Mesaj Gönder</a>
@@ -102,6 +112,14 @@
     <button type="submit">Gönder</button>
   </form>
 </main>
+
+<script>
+  function toggleMenu() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('open');
+    document.body.classList.toggle('menu-open');
+  }
+</script>
 
 </body>
 </html>
