@@ -3,30 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Key Girişi</title>
+  <title>Key Girişi & Panel</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       background: #111;
       color: white;
       display: flex;
-      height: 100vh;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
+      transition: background 0.3s, color 0.3s;
     }
+
     #login {
       background: #222;
       padding: 20px;
       border-radius: 8px;
       text-align: center;
+      margin-bottom: 30px;
+      width: 300px;
     }
-    input {
+
+    input, textarea {
       padding: 10px;
       margin-top: 10px;
-      width: 200px;
+      width: 100%;
       border: none;
       border-radius: 5px;
+      box-sizing: border-box;
+      font-size: 14px;
     }
+
     button {
       padding: 10px 15px;
       margin-top: 15px;
@@ -35,14 +47,35 @@
       color: white;
       cursor: pointer;
       border-radius: 5px;
+      font-weight: bold;
     }
+
     button:hover {
       background: #e74c3c;
     }
+
     #hata {
       color: #e74c3c;
       display: none;
       margin-top: 10px;
+    }
+
+    /* Dark mode stil */
+    body.dark-mode {
+      background: #121212;
+      color: #eee;
+    }
+
+    body.dark-mode #login {
+      background: #333;
+    }
+
+    body.dark-mode button {
+      background: #2980b9;
+    }
+
+    body.dark-mode button:hover {
+      background: #1f6391;
     }
   </style>
 </head>
@@ -56,6 +89,17 @@
     <p id="hata">Yanlış key, tekrar dene!</p>
   </div>
 
+  <!-- Dark/Light Mod Butonu -->
+  <button id="modDegistir">Karanlık Mod</button>
+
+  <!-- İletişim Formu -->
+  <form id="iletisimForm" style="margin-top:30px; width: 300px;">
+    <input type="text" name="isim" placeholder="Adın ne?" required />
+    <input type="email" name="email" placeholder="Email adresin" required />
+    <textarea name="mesaj" placeholder="Bir şeyler yaz..." required></textarea>
+    <button type="submit">Gönder</button>
+  </form>
+
   <script>
     const dogruKey = "adanalibabos";
 
@@ -67,25 +111,7 @@
         document.getElementById("hata").style.display = "block";
       }
     }
-  </script>
 
-</body>
-
-  <body>
-
-  <!-- Dark/Light Mod Butonu -->
-  <button id="modDegistir">Karanlık Mod</button>
-
-  <!-- İletişim Formu -->
-  <form id="iletisimForm">
-    <input type="text" name="isim" placeholder="Adın ne?" required />
-    <input type="email" name="email" placeholder="Email adresin" required />
-    <textarea name="mesaj" placeholder="Bir şeyler yaz..." required></textarea>
-    <button type="submit">Gönder</button>
-  </form>
-
-  <!-- Buraya aşağıdaki script’i de koyacaksın -->
-  <script>
     // Dark/Light mod toggle
     const buton = document.getElementById('modDegistir');
     buton.onclick = () => {
@@ -94,12 +120,4 @@
     };
 
     // Form gönderimi
-    document.getElementById('iletisimForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('Mesajın alındı, sağ olasın!');
-      this.reset();
-    });
-  </script>
-
-  </body>
-</html>
+    document.getElement
