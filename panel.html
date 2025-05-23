@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Panel Sayfası</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #333;
+    color: white;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  #panel {
+    background: #222;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  button {
+    padding: 10px 15px;
+    margin-top: 15px;
+    background: #c0392b;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  button:hover {
+    background: #e74c3c;
+  }
+</style>
+</head>
+<body>
+
+<div id="panel">
+  <h2>Hoşgeldin, Babüş!</h2>
+  <p>Burasi panelin, istediğin yazıyı buraya koyabilirsin.</p>
+  <button onclick="window.location.href='index.html'">Çıkış Yap</button>
+</div>
+
+</body>
+</html>
