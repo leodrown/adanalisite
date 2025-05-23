@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Adanalı Keyli Noktalı Site</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background-color: black;
+      background-image: radial-gradient(circle, blue 4px, transparent 5px);
+      background-size: 40px 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .box {
+      width: 500px;
+      height: 300px;
+      background-color: white;
+      color: red;
+      padding: 20px 30px;
+      box-sizing: border-box;
+      box-shadow: 0 0 15px 3px rgba(255,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      border-radius: 10px;
+    }
+
+    .box h1 {
+      font-size: 28px;
+      margin: 0 0 15px 0;
+    }
+
+    .box p {
+      font-size: 18px;
+      margin: 0 0 20px 0;
+    }
+
+    input {
+      padding: 10px;
+      width: 80%;
+      font-size: 16px;
+      border: 2px solid red;
+      border-radius: 5px;
+      outline: none;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: red;
+      border: none;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    #message {
+      font-weight: bold;
+      margin-top: 15px;
+      min-height: 24px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box" id="keyBox">
+    <h1>Siteye Giriş</h1>
+    <p>Key’i yaz, sonra “Giriş”e bas!</p>
+    <input type="text" id="keyInput" placeholder="Key’i buraya yaz" />
+    <button onclick="checkKey()">Giriş</button>
+    <div id="message"></div>
+  </div>
+
+  <script>
+    function checkKey() {
+      const input = document.getElementById('keyInput').value.trim();
+      const message = document.getElementById('message');
+      const box = document.getElementById('keyBox');
+      const correctKey = 'adanalibabos';
+
+      if(input === correctKey) {
+        message.style.color = 'green';
+        message.textContent = 'Giriş başarılı! Hoşgeldin Adanalı Babos!';
+
+        // Key doğruysa içeriği değiştiriyoruz
+        box.innerHTML = `
+          <h1>Adanalı'nın Noktalı Sitesi</h1>
+          <p>Buraya hoşgeldin! Artık siteyi özgürce kullanabilirsin.</p>
+        `;
+      } else {
+        message.style.color = 'red';
+        message.textContent = 'Hadi ya! Key yanlış, tekrar dene!';
+      }
+    }
+  </script>
+
+</body>
+</html>
