@@ -6,43 +6,25 @@
 <title>Mesaj Gönder</title>
 <style>
   body {
+    margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    padding: 20px;
+    transition: background 0.4s, color 0.4s;
+    background-color: #fff;
+    color: #000;
   }
-  a {
-    color: #2980b9;
-    text-decoration: none;
+
+  body.dark-mode {
+    background-color: #121212;
+    color: #eee;
   }
-  form {
-    display: flex;
-    flex-direction: column;
-    max-width: 400px;
-  }
-  input, textarea {
-    margin-bottom: 10px;
-    padding: 8px;
-    font-size: 16px;
-  }
-  button {
-    background-color: #2980b9;
+
+  header {
+    background-color: #000000;
     color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-  }
-  button:hover {
-    background-color: #1f5f8b;
-  }
-</style>
-</head>
-<body>
-  <h1>Mesaj Gönder</h1>
-  <form onsubmit="alert('Mesajın başarıyla gönderildi!'); return false;">
-    <input type="text" placeholder="Adın" required />
-    <input type="email" placeholder="Email" required />
-    <textarea placeholder="Mesajın..." required></textarea>
-    <button type="submit">Gönder</button>
-  </form>
-  <a href="panel.html">← Panele Dön</a>
-</body>
-</html>
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 3px solid black;
+    border-left: 5px solid #2980b9;
+    border
