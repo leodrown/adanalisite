@@ -70,4 +70,36 @@
   </script>
 
 </body>
+
+  <body>
+
+  <!-- Dark/Light Mod Butonu -->
+  <button id="modDegistir">Karanlık Mod</button>
+
+  <!-- İletişim Formu -->
+  <form id="iletisimForm">
+    <input type="text" name="isim" placeholder="Adın ne?" required />
+    <input type="email" name="email" placeholder="Email adresin" required />
+    <textarea name="mesaj" placeholder="Bir şeyler yaz..." required></textarea>
+    <button type="submit">Gönder</button>
+  </form>
+
+  <!-- Buraya aşağıdaki script’i de koyacaksın -->
+  <script>
+    // Dark/Light mod toggle
+    const buton = document.getElementById('modDegistir');
+    buton.onclick = () => {
+      document.body.classList.toggle('dark-mode');
+      buton.textContent = document.body.classList.contains('dark-mode') ? 'Aydınlık Mod' : 'Karanlık Mod';
+    };
+
+    // Form gönderimi
+    document.getElementById('iletisimForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Mesajın alındı, sağ olasın!');
+      this.reset();
+    });
+  </script>
+
+  </body>
 </html>
