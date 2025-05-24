@@ -14,16 +14,13 @@
       height: 100vh;
       justify-content: center;
       align-items: center;
-      margin: 0;
+      backdrop-filter: brightness(0.9);
     }
 
     #login {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 12px;
-      padding: 30px;
+      background: rgba(0, 0, 0, 0.4); /* Şeffaf siyah */
+      padding: 25px;
+      border-radius: 10px;
       text-align: center;
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
     }
@@ -34,6 +31,12 @@
       width: 200px;
       border: none;
       border-radius: 5px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    input::placeholder {
+      color: #ccc;
     }
 
     button {
@@ -51,7 +54,7 @@
     }
 
     #hata {
-      color: #ff4d4d;
+      color: #e74c3c;
       display: none;
       margin-top: 10px;
     }
