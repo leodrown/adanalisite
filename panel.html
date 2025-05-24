@@ -1,200 +1,144 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Panel Menü</title>
-<style>
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    transition: background 0.4s, color 0.4s;
-    background-color: #fff;
-    color: #000;
-  }
-
-  body.dark-mode {
-    background-color: #121212;
-    color: #eee;
-  }
-
-  header {
-    background-color: #000000;
-    color: white;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 3px solid black; /* Siyah alt çizgi */
-    border-left: 5px solid #2980b9; /* Sol mavi kenar */
-    border-right: 5px solid #2980b9; /* Sağ mavi kenar */
-    border-top: none;
-  }
-
-  header h1 {
-    margin-left: 20px;
-    font-size: 20px;
-    font-weight: 600;
-    transition: font-size 0.3s;
-  }
-
-  /* Mod değiştirme butonu */
-  #modToggle {
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    filter: invert(1); /* Güneş ikonu beyaz olsun */
-    transition: filter 0.3s;
-  }
-
-  body.dark-mode #modToggle {
-    filter: invert(0); /* Ay ikonu siyah olsun */
-  }
-
-  /* Menü butonu (3 nokta) */
-  .menu-btn {
-    font-size: 20px;
-    cursor: pointer;
-    user-select: none;
-    transition: font-size 0.3s;
-  }
-
-  /* Yan menü (sidebar) */
-  .sidebar {
-    height: 100vh;
-    width: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #34495e;
-    overflow-x: hidden;
-    transition: 0.3s;
-    padding-top: 60px;
-    box-sizing: border-box;
-    z-index: 1000;
-  }
-
-  .sidebar a {
-    padding: 15px 30px;
-    text-decoration: none;
-    font-size: 18px;
-    color: white;
-    display: block;
-    transition: 0.3s;
-    border-bottom: 2px solid red; /* Kırmızı alt çizgi */
-  }
-
-  .sidebar a:hover {
-    background-color: #2980b9;
-  }
-
-  /* Menü açıkken body içeriğini sağa kaydır */
-  body.menu-open {
-    margin-left: 250px;
-    transition: margin-left 0.3s;
-  }
-
-  /* Menü açıkken sidebar genişliği */
-  .sidebar.open {
-    width: 225px;
-  }
-
-  /* İçerik alanı */
-  main {
-    padding: 20px;
-    margin-left: 0;
-    transition: margin-left 0.3s;
-  }
-
-  body.menu-open main {
-    margin-left: 250px;
-  }
-
-  /* Menü açıldığında başlık ve menü butonunu küçült */
-  body.menu-open header h1 {
-    font-size: 16px;
-  }
-  body.menu-open .menu-btn {
-    font-size: 24px;
-  }
-
-  /* Kayan yazı bölümü */
-  .kayan-yazi-container {
-    width: 100%;
-    background: #222;
-    color: white;
-    overflow: hidden;
-    white-space: nowrap;
-    box-sizing: border-box;
-    padding: 6px 0;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    font-weight: bold;
-    font-size: 12px; /* Biraz daha küçük yazı */
-    z-index: 1100;
-    border-top: 2px solid #2980b9;
-  }
-
-  .kayan-yazi {
-    display: inline-block;
-    padding-left: 100%;
-    animation: kaydir 15s linear infinite;
-    background: linear-gradient(90deg, 
-      red, orange, yellow, green, cyan, blue, violet);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  @keyframes kaydir {
-    0% {
-      transform: translateX(0);
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f0f0f;
+      color: white;
+      display: flex;
     }
-    100% {
-      transform: translateX(-100%);
+    nav.sidebar {
+      width: 240px;
+      height: 100vh;
+      background: #1e1e2f;
+      padding-top: 30px;
+      position: fixed;
     }
-  }
-</style>
+    nav.sidebar a {
+      display: block;
+      padding: 15px 25px;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 16px;
+    }
+    nav.sidebar a:hover {
+      background: #3a3a5a;
+      color: #fff;
+    }
+    header {
+      background: #1e1e2f;
+      padding: 15px 25px;
+      width: 100%;
+      position: fixed;
+      left: 240px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
+    .menu-toggle {
+      font-size: 22px;
+      cursor: pointer;
+    }
+    .dropdown {
+      position: relative;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 30px;
+      background-color: #2c2c3e;
+      border: 1px solid #444;
+      min-width: 150px;
+      z-index: 100;
+    }
+    .dropdown-content a {
+      color: #fff;
+      padding: 10px 15px;
+      display: block;
+      text-decoration: none;
+    }
+    .dropdown-content a:hover {
+      background-color: #444;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    main {
+      margin-left: 240px;
+      margin-top: 70px;
+      padding: 20px;
+      width: 100%;
+    }
+    .card {
+      background: linear-gradient(135deg, #6f00ff, #9e00ff);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #c200ff;
+      margin-bottom: 20px;
+      color: white;
+      position: relative;
+    }
+    .card h3 {
+      font-size: 22px;
+    }
+    .card p {
+      margin-top: 10px;
+      font-size: 16px;
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <span class="menu-btn" onclick="toggleMenu()">⋮</span>
-  <h1>Panel Başlık</h1>
-  <img id="modToggle" src="https://cdn-icons-png.flaticon.com/512/1164/1164954.png" alt="Mod Değiştir" title="Karanlık/Aydınlık Mod" />
-</header>
+  <nav class="sidebar">
+    <a href="#"><i class="fas fa-home"></i> Ana Sayfa</a>
+    <a href="#"><i class="fab fa-instagram"></i> Instagram İşlemleri</a>
+    <a href="#"><i class="fab fa-whatsapp"></i> Whatsapp İşlemleri</a>
+    <a href="#"><i class="fas fa-phone"></i> Telefon İşlemleri</a>
+    <a href="#"><i class="fas fa-image"></i> Galeri İşlemleri</a>
+    <a href="#"><i class="fab fa-tiktok"></i> Tiktok İşlemleri</a>
+    <a href="#"><i class="fab fa-snapchat"></i> Snapchat İşlemleri</a>
+    <a href="#"><i class="fab fa-youtube"></i> Youtube İşlemleri</a>
+    <a href="#"><i class="fab fa-facebook"></i> Facebook İşlemleri</a>
+  </nav>
 
-<nav class="sidebar" id="sidebar">
-  <a href="hakkimizda.html">Hakkımızda</a>
-  <a href="ayarlar.html">Ayarlar</a>
-  <a href="mesaj.html">Mesaj Gönder</a>
-</nav>
+  <header>
+    <div class="logo">Panel</div>
+    <div class="dropdown">
+      <i class="fas fa-ellipsis-v menu-toggle"></i>
+      <div class="dropdown-content">
+        <a href="#">Profil</a>
+        <a href="#">Ayarlar</a>
+        <a href="#">Çıkış</a>
+      </div>
+    </div>
+  </header>
 
-<main>
-  <h2>Panel İçeriği Burada</h2>
-  <p>Buraya istediğin içerikleri koyabilirsin.</p>
-</main>
-
-<!-- Kayan yazı -->
-<div class="kayan-yazi-container">
-  <div class="kayan-yazi">
-    Son dakika: Adana'da yağmur bekleniyor... &nbsp;&nbsp;&nbsp; Yeni kod projeleri yolda! &nbsp;&nbsp;&nbsp; Adanalı ChatGPT hep yanınızda!
-  </div>
-</div>
-
-<script>
-  function toggleMenu() {
-    const sidebar = document.getElementById('sidebar');
-    sidebar.classList.toggle('open');
-    document.body.classList.toggle('menu-open');
-  }
-
-  // Karanlık/Aydınlık mod toggle
-  const modToggle = document.getElementById('modToggle');
-  modToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-  });
-</script>
-
+  <main>
+    <div class="card">
+      <h3>Toplam Kullanıcılar</h3>
+      <p>1</p>
+    </div>
+    <div class="card">
+      <h3>Üyelik</h3>
+      <p>Admin</p>
+    </div>
+    <div class="card">
+      <h3>Duyuru Paneli</h3>
+      <p>Satın almalar için: <br> <a href="https://discord.gg/yqd4QAC4" target="_blank" style="color:#fff; text-decoration:underline;">discord.gg/yqd4QAC4</a><br><small>25.11.2022</small></p>
+    </div>
+  </main>
+<audio autoplay hidden>
+  <source src="ORGANIZE - MERCEDES-BENZ (Official Video).mp3" type="audio/mpeg">
+  Tarayıcınız ses çalmayı desteklemiyor.
+</audio>
+  
 </body>
 </html>
