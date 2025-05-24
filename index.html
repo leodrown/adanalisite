@@ -44,6 +44,11 @@
       display: none;
       margin-top: 10px;
     }
+    #basarili {
+      color: #2ecc71;
+      display: none;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -54,6 +59,7 @@
     <br />
     <button onclick="kontrolEt()">Giriş</button>
     <p id="hata">Yanlış key, tekrar dene!</p>
+    <p id="basarili">Giriş başarılı, yönlendiriliyorsun...</p>
   </div>
 
   <script>
@@ -61,11 +67,21 @@
 
     function kontrolEt() {
       const girilenKey = document.getElementById("keyInput").value;
+      const hata = document.getElementById("hata");
+      const basarili = document.getElementById("basarili");
+
       if (girilenKey === dogruKey) {
-        localStorage.setItem("authenticated", "true");
-        window.location.href = "panel.html";
+        localStorage.setItem("girisYapildi", "true");
+        hata.style.display = "none";
+        basarili.style.display = "block";
+
+        // 2 saniye sonra yönlendir
+        setTimeout(() => {
+          window.location.href = "panel.html";
+        }, 2000);
       } else {
-        document.getElementById("hata").style.display = "block";
+        hata.style.display = "block";
+        basarili.style.display = "none";
       }
     }
   </script>
