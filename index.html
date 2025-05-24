@@ -7,19 +7,27 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #111;
+      background: url('neonsehir.jpeg') no-repeat center center fixed;
+      background-size: cover;
       color: white;
       display: flex;
       height: 100vh;
       justify-content: center;
       align-items: center;
+      margin: 0;
     }
+
     #login {
-      background: #222;
-      padding: 20px;
-      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 30px;
       text-align: center;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
     }
+
     input {
       padding: 10px;
       margin-top: 10px;
@@ -27,6 +35,7 @@
       border: none;
       border-radius: 5px;
     }
+
     button {
       padding: 10px 15px;
       margin-top: 15px;
@@ -36,11 +45,13 @@
       cursor: pointer;
       border-radius: 5px;
     }
+
     button:hover {
       background: #e74c3c;
     }
+
     #hata {
-      color: #e74c3c;
+      color: #ff4d4d;
       display: none;
       margin-top: 10px;
     }
@@ -53,7 +64,7 @@
     <input type="password" id="keyInput" placeholder="Key gir bakalım" />
     <br />
     <button onclick="kontrolEt()">Giriş</button>
-    <p id="hata">Yanlış key aga, tekrar dene!</p>
+    <p id="hata">Yanlış key, tekrar dene!</p>
   </div>
 
   <script>
