@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
+<!DOCTYPE html><html lang="tr"><head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Panel</title>
@@ -74,7 +72,6 @@
     <div>Panel</div>
     <i class="fas fa-chevron-right menu-toggle" id="menuBtn"></i>
   </div>
-
   <div class="sidebar" id="sidebar">
     <a href="#">Instagram İşlemleri</a>
     <a href="#">WhatsApp İşlemleri</a>
@@ -85,7 +82,6 @@
     <a href="#">YouTube İşlemleri</a>
     <a href="#">Facebook İşlemleri</a>
   </div>
-
   <div class="panel" id="panel">
     <div class="card">
       <h3>Toplam Kullanıcılar</h3>
@@ -102,17 +98,17 @@
       Yayın Tarihi: 25.11.2022</p>
     </div>
 
+    <!-- Yeni müzik dosyası (organize.mp3) -->
     <audio autoplay loop controls>
       <source src="organize.mp3" type="audio/mpeg">
       Tarayıcınız audio etiketini desteklemiyor.
     </audio>
-  </div>
 
+  </div>
   <script>
     const menuBtn = document.getElementById("menuBtn");
     const sidebar = document.getElementById("sidebar");
     const panel = document.getElementById("panel");
-
     menuBtn.addEventListener("click", () => {
       sidebar.classList.toggle("active");
       panel.classList.toggle("shifted");
