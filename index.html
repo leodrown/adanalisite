@@ -62,7 +62,7 @@
     function kontrolEt() {
       const girilenKey = document.getElementById("keyInput").value;
       if (girilenKey === dogruKey) {
-        localStorage.setItem("key", girilenKey); // Key'i kaydet
+        localStorage.setItem("authenticated", "true");
         window.location.href = "panel.html";
       } else {
         document.getElementById("hata").style.display = "block";
