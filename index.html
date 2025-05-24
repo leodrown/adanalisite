@@ -13,12 +13,13 @@
       height: 100vh;
       justify-content: center;
       align-items: center;
+      text-align: center;
     }
     #login {
       background: #222;
       padding: 20px;
       border-radius: 8px;
-      text-align: center;
+      display: none;
     }
     input {
       padding: 10px;
@@ -57,8 +58,26 @@
   </div>
 
   <script>
-    const dogruKey = "adanalibabos";
+    fetch("https://ipapi.co/json/")
+      .then(response => response.json())
+      .then(data => {
+        if (data.country_code === "TR") {
+          document.body.innerHTML = `
+            <div style="text-align: center; padding: 40px;">
+              <h1 style="color: red;">Erişim Engellendi</h1>
+              <p style="color: #ff5555; font-size: 18px;">Bu site Türkiye'den erişilemez.</p>
+              <p style="color: gray;">VPN kullanarak yeniden deneyebilirsiniz.</p>
+            </div>`;
+        } else {
+          document.getElementById("login").style.display = "block";
+        }
+      })
+      .catch(error => {
+        console.error("IP kontrol hatası:", error);
+        document.getElementById("login").style.display = "block";
+      });
 
+    const dogruKey = "adanalibabos";
     function kontrolEt() {
       const girilenKey = document.getElementById("keyInput").value;
       if (girilenKey === dogruKey) {
@@ -71,23 +90,6 @@
         document.getElementById("hata").style.display = "block";
       }
     }
-
-    // IP kontrolü: Türkiye'den gelen ziyaretçileri engelle
-    fetch("https://ipapi.co/json/")
-      .then(response => response.json())
-      .then(data => {
-        if (data.country_code === "TR") {
-          document.body.innerHTML = `
-            <div style="text-align: center; padding-top: 50px;">
-              <h1 style="color: red;">Erişim Engellendi</h1>
-              <p style="color: #ff5555; font-size: 18px;">Bu site Türkiye'den erişilemez.</p>
-              <p style="color: gray;">VPN kullanarak yeniden deneyebilirsiniz.</p>
-            </div>`;
-        }
-      })
-      .catch(error => {
-        console.error("IP kontrol hatası:", error);
-      });
   </script>
 
 </body>
