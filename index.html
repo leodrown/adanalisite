@@ -57,21 +57,37 @@
   </div>
 
   <script>
-    const dogruKey = "drownbabafirar01";
+    const dogruKey = "adanalibabos";
 
     function kontrolEt() {
       const girilenKey = document.getElementById("keyInput").value;
       if (girilenKey === dogruKey) {
         localStorage.setItem("girisYapildi", "true");
-        sessionStorage.setItem("girisYapildi", "true");
         alert("Giriş başarılı! Yönlendiriliyorsunuz...");
         setTimeout(() => {
           window.location.href = "panel.html";
-        }, 1500);
+        }, 2000);
       } else {
         document.getElementById("hata").style.display = "block";
       }
     }
+
+    // IP kontrolü: Türkiye'den gelen ziyaretçileri engelle
+    fetch("https://ipapi.co/json/")
+      .then(response => response.json())
+      .then(data => {
+        if (data.country_code === "TR") {
+          document.body.innerHTML = `
+            <div style="text-align: center; padding-top: 50px;">
+              <h1 style="color: red;">Erişim Engellendi</h1>
+              <p style="color: #ff5555; font-size: 18px;">Bu site Türkiye'den erişilemez.</p>
+              <p style="color: gray;">VPN kullanarak yeniden deneyebilirsiniz.</p>
+            </div>`;
+        }
+      })
+      .catch(error => {
+        console.error("IP kontrol hatası:", error);
+      });
   </script>
 
 </body>
