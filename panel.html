@@ -6,11 +6,7 @@
   <title>Panel</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Segoe UI', sans-serif;
       background: #0f0f0f;
@@ -23,10 +19,7 @@
       align-items: center;
       justify-content: space-between;
     }
-    .menu-toggle {
-      font-size: 24px;
-      cursor: pointer;
-    }
+    .menu-toggle { font-size: 24px; cursor: pointer; }
     .sidebar {
       width: 250px;
       background: #2b2b3d;
@@ -38,9 +31,7 @@
       padding: 20px;
       z-index: 999;
     }
-    .sidebar.active {
-      left: 0;
-    }
+    .sidebar.active { left: 0; }
     .sidebar a {
       display: block;
       color: #fff;
@@ -53,9 +44,7 @@
       margin-left: 0;
       transition: margin-left 0.3s ease;
     }
-    .panel.shifted {
-      margin-left: 250px;
-    }
+    .panel.shifted { margin-left: 250px; }
     .card {
       background: #1e1e2f;
       margin-bottom: 20px;
@@ -67,11 +56,22 @@
       display: block;
       margin: 20px auto;
     }
+    .logout {
+      background: #e74c3c;
+      padding: 10px;
+      margin-top: 20px;
+      text-align: center;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .logout:hover {
+      background: #c0392b;
+    }
   </style>
 </head>
 <body>
   <script>
-    if (localStorage.getItem("authenticated") !== "true") {
+    if (localStorage.getItem("girisYapildi") !== "true") {
       window.location.href = "index.html";
     }
   </script>
@@ -89,6 +89,7 @@
     <a href="#">Snapchat İşlemleri</a>
     <a href="#">YouTube İşlemleri</a>
     <a href="#">Facebook İşlemleri</a>
+    <div class="logout" onclick="cikisYap()">Çıkış Yap</div>
   </div>
   <div class="panel" id="panel">
     <div class="card">
@@ -102,23 +103,29 @@
     <div class="card">
       <h3>Duyuru Paneli</h3>
       <p>Satın alımlar için<br>
-      <a href="https://discord.gg/yqd4QAC4" target="_blank">https://discord.gg/yqd4QAC4</a><br>
-      Yayın Tarihi: 25.11.2022</p>
+        <a href="https://discord.gg/yqd4QAC4" target="_blank">https://discord.gg/yqd4QAC4</a><br>
+        Yayın Tarihi: 25.11.2022</p>
     </div>
-
     <audio autoplay loop controls>
       <source src="organize.mp3" type="audio/mpeg">
       Tarayıcınız audio etiketini desteklemiyor.
     </audio>
   </div>
+
   <script>
     const menuBtn = document.getElementById("menuBtn");
     const sidebar = document.getElementById("sidebar");
     const panel = document.getElementById("panel");
+
     menuBtn.addEventListener("click", () => {
       sidebar.classList.toggle("active");
       panel.classList.toggle("shifted");
     });
+
+    function cikisYap() {
+      localStorage.removeItem("girisYapildi");
+      window.location.href = "index.html";
+    }
   </script>
 </body>
 </html>
