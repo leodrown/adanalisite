@@ -71,7 +71,8 @@
 </head>
 <body>
   <script>
-    if (localStorage.getItem("girisYapildi") !== "true") {
+    const giris = localStorage.getItem("girisYapildi") === "true" || sessionStorage.getItem("girisYapildi") === "true";
+    if (!giris) {
       window.location.href = "index.html";
     }
   </script>
@@ -124,6 +125,7 @@
 
     function cikisYap() {
       localStorage.removeItem("girisYapildi");
+      sessionStorage.removeItem("girisYapildi");
       window.location.href = "index.html";
     }
   </script>
