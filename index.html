@@ -63,6 +63,7 @@
       const girilenKey = document.getElementById("keyInput").value;
       if (girilenKey === dogruKey) {
         localStorage.setItem("girisYapildi", "true");
+        sessionStorage.setItem("girisYapildi", "true");
         alert("Giriş başarılı! Yönlendiriliyorsunuz...");
         setTimeout(() => {
           window.location.href = "panel.html";
