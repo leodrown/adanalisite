@@ -2,155 +2,87 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Drown babanın paneli</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Key Girişi</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #0f0f0f;
+      font-family: Arial, sans-serif;
+      background: url('assets/retro-bg.jpg') no-repeat center center fixed;
+      background-size: cover;
       color: white;
-    }
-    .header {
-      background: #1e1e2f;
-      padding: 15px;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .menu-toggle { font-size: 24px; cursor: pointer; }
-    .sidebar {
-      width: 250px;
-      background: #2b2b3d;
       height: 100vh;
-      position: fixed;
-      top: 0;
-      left: -250px;
-      transition: left 0.3s ease;
-      padding: 20px;
-      z-index: 999;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
     }
-    .sidebar.active { left: 0; }
-    .sidebar a {
-      display: block;
-      color: #fff;
-      padding: 10px 0;
-      text-decoration: none;
-      border-bottom: 1px solid #444;
-    }
-    .panel {
-      padding: 20px;
-      margin-left: 0;
-      transition: margin-left 0.3s ease;
-    }
-    .panel.shifted { margin-left: 250px; }
-    .card {
-      background: #1e1e2f;
-      margin-bottom: 20px;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px #f0f;
-    }
-    audio {
-      display: block;
-      margin: 20px auto;
-    }
-    .logout {
-      background: #e74c3c;
-      padding: 10px;
-      margin-top: 20px;
+
+    #login {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 30px;
       text-align: center;
-      border-radius: 6px;
-      cursor: pointer;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
     }
-    .logout:hover {
+
+    input {
+      padding: 10px;
+      margin-top: 10px;
+      width: 200px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 15px;
+      margin-top: 15px;
       background: #c0392b;
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background: #e74c3c;
+    }
+
+    #hata {
+      color: #ff4d4d;
+      display: none;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <script>
-    const giris = localStorage.getItem("girisYapildi") === "true" || sessionStorage.getItem("girisYapildi") === "true";
-    if (!giris) {
-      window.location.href = "index.html";
-    }
-  </script>
 
-  <div class="header">
-    <div>Panel</div>
-    <i class="fas fa-chevron-right menu-toggle" id="menuBtn"></i>
-  </div>
-  <div class="sidebar" id="sidebar">
-    <a href="#">Instagram İşlemleri[Bakimda]</a>
-    <a href="#">WhatsApp İşlemleri[Bakimda]</a>
-    <a href="#">Telefon İşlemleri[Bakimda]</a>
-    <a href="#">Galeri İşlemleri[Bakimda]</a>
-    <a href="#">TikTok İşlemleri[Bakimda]</a>
-    <a href="#">Snapchat İşlemleri[Bakimda]</a>
-    <a href="#">YouTube İşlemleri[Bakimda]</a>
-    <a href="#">Facebook İşlemleri[Bakimda]</a>
-    <div class="logout" onclick="cikisYap()">Çıkış Yap</div>
-  </div>
-  <div class="panel" id="panel">
-    <div class="card">
-      <h3>Toplam Kullanıcılar</h3>
-      <p>1</p>
-    </div>
-    <div class="card">
-      <h3>Üyelik</h3>
-      <p>Admin</p>
-    </div>
-    <div class="card">
-  <h3>Duyuru Paneli</h3>
-  <p style="color: #ff4d4d; font-size: 14px;">
-    V1.0 yayında!<br><br>
-
-    Neler eklendi?<br>
-    - Şarkı eklendi.<br>
-    - Güvenlik arttırıldı.<br>
-    - Çıkış düğmesi eklendi.<br>
-    - Buglar fixlendi.<br><br>
-
-    V1.1 eklenecekler:<br>
-    - Sponsorluk.<br>
-    - Reklamlar.<br>
-    - İşlemler çalışacak, şu anda bakımda.<br>
-    - Chat eklenecek.<br>
-    - Kullanıcı sistemi gelecek.<br>
-    - Ve daha fazlası!<br><br>
-
-    Daha fazla bilgi için instagram: 
-    <span style="background: linear-gradient(to right, red, orange, yellow, green, cyan, blue, violet); 
-                 -webkit-background-clip: text; 
-                 -webkit-text-fill-color: transparent; 
-                 font-weight: bold;">
-      leo.drown
-      <h3>24.05.2025</h3>
-    </span>
-  </p>
-</div>
-    <audio autoplay loop controls>
-      <source src="organize.mp3" type="audio/mpeg">
-      Tarayıcınız audio etiketini desteklemiyor.
-    </audio>
+  <div id="login">
+    <h2>Giriş Yap</h2>
+    <input type="password" id="keyInput" placeholder="Key gir bakalım" />
+    <br />
+    <button onclick="kontrolEt()">Giriş</button>
+    <p id="hata">Yanlış key, tekrar dene!</p>
   </div>
 
   <script>
-    const menuBtn = document.getElementById("menuBtn");
-    const sidebar = document.getElementById("sidebar");
-    const panel = document.getElementById("panel");
+    const dogruKey = "drownbabafirar01";
 
-    menuBtn.addEventListener("click", () => {
-      sidebar.classList.toggle("active");
-      panel.classList.toggle("shifted");
-    });
-
-    function cikisYap() {
-      localStorage.removeItem("girisYapildi");
-      sessionStorage.removeItem("girisYapildi");
-      window.location.href = "index.html";
+    function kontrolEt() {
+      const girilenKey = document.getElementById("keyInput").value;
+      if (girilenKey === dogruKey) {
+        localStorage.setItem("girisYapildi", "true");
+        alert("Giriş başarılı! Yönlendiriliyorsunuz...");
+        setTimeout(() => {
+          window.location.href = "panel.html";
+        }, 1500);
+      } else {
+        document.getElementById("hata").style.display = "block";
+      }
     }
   </script>
+
 </body>
 </html>
