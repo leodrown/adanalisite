@@ -2,97 +2,94 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Key Girişi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ad Soyad Sorgulama</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: url('neonsehir1.jpeg') no-repeat center center fixed;
-      background-size: cover;
-      display: flex;
-      height: 100vh;
-      justify-content: center;
-      align-items: center;
-      margin: 0;
-    }
-    #login {
-      background: rgba(0, 0, 0, 0.4);
-      padding: 30px;
-      border-radius: 12px;
-      text-align: center;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-      animation: fadeIn 1.2s ease;
-    }
-    #login h2 {
+      background: #0f0f0f;
       color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 50px;
     }
     input {
       padding: 10px;
-      margin-top: 10px;
-      width: 220px;
+      margin: 5px;
       border: none;
       border-radius: 5px;
-      outline: none;
+      width: 250px;
     }
     button {
-      padding: 10px 15px;
-      margin-top: 15px;
-      background: #c0392b;
+      padding: 10px 20px;
+      margin-top: 10px;
+      background-color: #3498db;
       border: none;
+      border-radius: 5px;
       color: white;
       cursor: pointer;
-      border-radius: 5px;
-      transition: background 0.3s ease;
     }
     button:hover {
-      background: #e74c3c;
+      background-color: #2980b9;
     }
-    #hata {
-      color: #e74c3c;
-      display: none;
-      margin-top: 10px;
-    }
-    #basarili {
-      display: none;
-      margin-top: 10px;
-      color: #2ecc71;
-      font-weight: bold;
-      animation: fadeIn 1s ease-in-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
+    #sonuc {
+      margin-top: 20px;
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 500px;
     }
   </style>
 </head>
 <body>
+  <h2>Ad Soyad ile Sorgula</h2>
+  <input type="text" id="ad" placeholder="Ad">
+  <input type="text" id="soyad" placeholder="Soyad">
+  <input type="text" id="il" placeholder="İl (isteğe bağlı)">
+  <br>
+  <button onclick="sorgula()">Sorgula</button>
 
-  <div id="login">
-    <h2>Giriş Yap</h2>
-    <input type="password" id="keyInput" placeholder="Key gir bakalım" />
-    <br />
-    <button onclick="kontrolEt()">Giriş</button>
-    <p id="hata">Yanlış key, tekrar dene!</p>
-    <p id="basarili">Giriş yapıldı, yönlendiriliyorsunuz...</p>
-  </div>
+  <div id="sonuc"></div>
 
   <script>
-    const dogruKey = "drownbabafirar01";
+    function sorgula() {
+      const ad = document.getElementById("ad").value.trim();
+      const soyad = document.getElementById("soyad").value.trim();
+      const il = document.getElementById("il").value.trim();
 
-    function kontrolEt() {
-      const girilenKey = document.getElementById("keyInput").value;
-      if (girilenKey === dogruKey) {
-        document.getElementById("basarili").style.display = "block";
-        localStorage.setItem("girisYapildi", "true");
-        setTimeout(() => {
-          window.location.href = "panel.html";
-        }, 1500);
-      } else {
-        document.getElementById("hata").style.display = "block";
+      if (!ad || !soyad) {
+        alert("Lütfen ad ve soyad giriniz.");
+        return;
       }
+
+      let url = `https://api.hexnox.pro/sowixapi/adsoyadilice.php?ad=${encodeURIComponent(ad)}&soyad=${encodeURIComponent(soyad)}`;
+      if (il) {
+        url += `&il=${encodeURIComponent(il)}`;
+      }
+
+      document.getElementById("sonuc").innerHTML = "Sorgulanıyor...";
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          if (data && data.length > 0) {
+            let html = "<h3>Sonuçlar:</h3><ul>";
+            data.forEach(kisi => {
+              html += `<li>${kisi.ad} ${kisi.soyad} - TC: ${kisi.tc} - İl: ${kisi.il || "Belirtilmemiş"}</li>`;
+            });
+            html += "</ul>";
+            document.getElementById("sonuc").innerHTML = html;
+          } else {
+            document.getElementById("sonuc").innerHTML = "Sonuç bulunamadı.";
+          }
+        })
+        .catch(error => {
+          console.error("Hata:", error);
+          document.getElementById("sonuc").innerHTML = "Sorgulama sırasında hata oluştu.";
+        });
     }
   </script>
-
 </body>
 </html>
